@@ -25,7 +25,7 @@ function PokemonPage() {
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm allPokemon={allPokemon} setAllPokemon={setAllPokemon} />
       <br />
       <Search
         allPokemon={allPokemon}
