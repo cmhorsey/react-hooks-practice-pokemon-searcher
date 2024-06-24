@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Form } from "semantic-ui-react"
 
-function PokemonForm({ allPokemon, setAllPokemon }) {
+function PokemonForm({ addPokemon }) {
   const [formData, setFormData] = useState({
     name: "",
     hp: "",
@@ -11,7 +11,6 @@ function PokemonForm({ allPokemon, setAllPokemon }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    // const spriteObj = [formData.frontUrl, formData.backUrl]
     const spriteObj = {
       front: formData.frontUrl,
       back: formData.backUrl,
@@ -29,7 +28,7 @@ function PokemonForm({ allPokemon, setAllPokemon }) {
       body: JSON.stringify(pokemonData),
     })
       .then((r) => r.json())
-      .then((newPokemon) => handleAddPokemon(newPokemon))
+      .then(addPokemon)
   }
 
   function handleChange(event) {
@@ -37,9 +36,6 @@ function PokemonForm({ allPokemon, setAllPokemon }) {
       ...formData,
       [event.target.name]: event.target.value,
     })
-  }
-  function handleAddPokemon(newPokemon) {
-    setAllPokemon([...allPokemon, newPokemon])
   }
 
   return (

@@ -11,9 +11,9 @@ function PokemonPage() {
   const getPokemon = () => {
     fetch("http://localhost:3001/pokemon")
       .then((res) => res.json())
-      .then((data) => {
-        setAllPokemon(data)
-        setOriginalPokemon(data)
+      .then((pokemon) => {
+        setAllPokemon(pokemon)
+        setOriginalPokemon(pokemon)
       })
   }
 
@@ -21,11 +21,15 @@ function PokemonPage() {
     getPokemon()
   }, [])
 
+  function handleAddPokemon(newPokemon) {
+    setAllPokemon([...allPokemon, newPokemon])
+  }
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm allPokemon={allPokemon} setAllPokemon={setAllPokemon} />
+      <PokemonForm addPokemon={handleAddPokemon} />
       <br />
       <Search
         allPokemon={allPokemon}
