@@ -7,7 +7,7 @@ function PokemonCollection({ allPokemon }) {
     <Card.Group itemsPerRow={6}>
       <h1>Hello From Pokemon Collection</h1>
       {allPokemon.map((pokemon) => {
-        return <PokemonCard pokemon={pokemon} />
+        return <PokemonCard key={pokemon.id} pokemon={pokemon} />
       })}
     </Card.Group>
   )

@@ -6,11 +6,15 @@ import { Container } from "semantic-ui-react"
 
 function PokemonPage() {
   const [allPokemon, setAllPokemon] = useState([])
+  const [originalPokemon, setOriginalPokemon] = useState([])
 
   const getPokemon = () => {
     fetch("http://localhost:3001/pokemon")
       .then((res) => res.json())
-      .then(setAllPokemon)
+      .then((data) => {
+        setAllPokemon(data)
+        setOriginalPokemon(data)
+      })
   }
 
   useEffect(() => {
@@ -23,7 +27,11 @@ function PokemonPage() {
       <br />
       <PokemonForm />
       <br />
-      <Search />
+      <Search
+        allPokemon={allPokemon}
+        setAllPokemon={setAllPokemon}
+        originalPokemon={originalPokemon}
+      />
       <br />
       <PokemonCollection allPokemon={allPokemon} />
     </Container>
